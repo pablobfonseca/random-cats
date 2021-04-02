@@ -76,8 +76,22 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h2 [] [ text "Random Cats" ]
-        , viewGif model
+        [ node "link"
+            [ rel "stylesheet"
+            , href "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+            ]
+            []
+        , nav []
+            [ div
+                [ class "nav-wrapper light-blue lighten-2" ]
+                [ div
+                    [ class "brand-logo center" ]
+                    [ text "Random Cats" ]
+                ]
+            ]
+        , section
+            [ class "container" ]
+            [ viewGif model ]
         ]
 
 
@@ -85,24 +99,51 @@ viewGif : Model -> Html Msg
 viewGif model =
     case model of
         Failure ->
-            div []
+            div [ class "center" ]
                 [ text "I could not load a random cat for some reason."
-                , button [ onClick MorePlease ] [ text "Try Again!" ]
+                , button
+                    [ class "waves-effect waves-light btn"
+                    , onClick MorePlease
+                    ]
+                    [ text "Try Again!" ]
                 ]
 
         Loading ->
             text "Loading..."
 
         Success url ->
-            div []
-                [ button [ onClick MorePlease, style "display" "block" ]
-                    [ text "More Please!" ]
-                , img [ src url ] []
+            div
+                [ class "row" ]
+                [ div
+                    [ class "col s12 m7" ]
+                    [ div
+                        [ class "card" ]
+                        [ div
+                            [ class "card-image" ]
+                            [ img
+                                [ src url ]
+                                []
+                            , span
+                                [ class "card-title" ]
+                                [ text "Cute!" ]
+                            ]
+                        , div
+                            [ class "card-content" ]
+                            [ p
+                                []
+                                [ text "lorem ipsum" ]
+                            ]
+                        , div
+                            [ class "card-action" ]
+                            [ button
+                                [ onClick MorePlease
+                                , class "waves-effect waves-light btn"
+                                ]
+                                []
+                            ]
+                        ]
+                    ]
                 ]
-
-
-
--- HTTP
 
 
 getRandomCatGif : Cmd Msg
