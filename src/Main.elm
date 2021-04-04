@@ -90,7 +90,7 @@ view model =
                 ]
             ]
         , section
-            [ class "container" ]
+            [ class "center-align" ]
             [ viewGif model ]
         ]
 
@@ -123,15 +123,6 @@ viewGif model =
                             [ img
                                 [ src url ]
                                 []
-                            , span
-                                [ class "card-title" ]
-                                [ text "Cute!" ]
-                            ]
-                        , div
-                            [ class "card-content" ]
-                            [ p
-                                []
-                                [ text "lorem ipsum" ]
                             ]
                         , div
                             [ class "card-action" ]
@@ -139,7 +130,7 @@ viewGif model =
                                 [ onClick MorePlease
                                 , class "waves-effect waves-light btn"
                                 ]
-                                []
+                                [ text "More Please" ]
                             ]
                         ]
                     ]
